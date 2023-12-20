@@ -13,10 +13,17 @@ class App extends Component {
   bad: 0
   }
   
-  anyStats = false;
+  noStatistics = true;
   
   countTotalFeedback = () => {
-    return this.state['good'] + this.state['neutral'] + this.state['bad'];
+    let total = 0;
+    for (let option in this.state) {
+      total = total + this.state[option];
+      
+      
+
+    }
+    return total;
   }
 
   countPositiveFeedbackPercentage = (total) => {
@@ -27,7 +34,7 @@ class App extends Component {
 
   
   onHandleFeedback = (e) => {
-    this.anyStats = true;
+    this.noStatistics = false ;
     e.preventDefault();
     const optionButton = e.target.name;
     
@@ -49,32 +56,36 @@ class App extends Component {
     return (
       <div
         style={{
-          height: '100vh',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
           color: '#010101',
-          flexDirection:'column'
+          flexDirection: 'column',
+          margin: '60px',
+          border: '2px solid black',
+          boxSizing: 'border-box',
+          paddingBottom: '20px'
         }}
       >
         
-        <Section title='Flease Leave Feedback'>
+        <Section title='Please Leave Feedback'>
           <br/>
           <FeedbackOptions options={['Good','Neutral', 'Bad']}
             onLeaveFeedback={this.onHandleFeedback} />
         </Section>
         
-        {!this.anyStats&&<Section title='Statistics'> 
+{this.noStatistics ? <Section title='Statistics'> 
           <Notification message='There is no feedback' />
           
          
-        </Section>}
-        {this.anyStats && <Section title='Statistics'>
+        </Section> : <Section title='Statistics'>
          
           <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={total} positivePercentage={positiveFeedback}/>
          
         </Section>}
+
+        
       </div>
     );
   };

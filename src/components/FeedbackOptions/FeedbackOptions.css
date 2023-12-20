@@ -1,0 +1,39 @@
+button {
+    
+        border: none;
+        border-radius: 10%;
+        color: white;
+        padding: 15px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 2px;
+        box-shadow: 2px;
+
+         
+
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+
+
+.feedbackButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#bad {
+    background-color: red;
+}
+
+#good {
+    background-color: green;
+}
+#neutral {
+        background-color: grey;
+    }
