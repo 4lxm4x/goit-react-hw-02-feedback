@@ -2,6 +2,10 @@ import React from "react";
 import { Component } from "react";
 import Statistics from "components/Statistics/Statistics";
 import FeedbackOptions from "components/FeedbackOptions/FeedbackOptions";
+import Section from "components/Section/Section";
+import Notification from "components/Notification/Notification";
+
+
 class App extends Component {
   state = {
   good: 0,
@@ -26,7 +30,7 @@ class App extends Component {
     this.anyStats = true;
     e.preventDefault();
     const optionButton = e.target.name;
-    console.log(e.target.name)
+    
     
     
     this.setState((prevState) => {
@@ -55,23 +59,22 @@ class App extends Component {
         }}
       >
         
-        <section title='FeedbackOptions'> Please leave feedback
+        <Section title='Flease Leave Feedback'>
           <br/>
-          <FeedbackOptions
-            onleaveFeedback={this.onHandleFeedback} />
-        </section>
+          <FeedbackOptions options={['Good','Neutral', 'Bad']}
+            onLeaveFeedback={this.onHandleFeedback} />
+        </Section>
         
-        {!this.anyStats&&<section title='Statistics'> 
-          <br />
-          <div className="stats">No feedbacks.</div>
+        {!this.anyStats&&<Section title='Statistics'> 
+          <Notification message='There is no feedback' />
+          
          
-        </section>}
-        {this.anyStats && <section title='Statistics'>
-          Statistics
-          <br /><br />
+        </Section>}
+        {this.anyStats && <Section title='Statistics'>
+         
           <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={total} positivePercentage={positiveFeedback}/>
          
-        </section>}
+        </Section>}
       </div>
     );
   };

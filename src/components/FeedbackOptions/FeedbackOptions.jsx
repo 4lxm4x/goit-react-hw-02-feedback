@@ -1,10 +1,13 @@
-const FeedbackOptions = ({onLeaveFeedback}) => {
-
+const FeedbackOptions = ({options, onLeaveFeedback}) => {  
+    
+    
+ 
     return (
         <>
-            <button className="optionButton"  name='good' onClick={onLeaveFeedback}>Good</button>
-            <button className="optionButton" name='neutral' onClick={onLeaveFeedback}>Neutral</button>
-            <button className="optionButton" name='bad' onClick={onLeaveFeedback}>Bad</button>
+            {options.map(option => {
+                return (<button key={option} className="optionButton" name={option.toLowerCase()} onClick={onLeaveFeedback}>{ option}</button>)
+    })}
+
         </>)
 
 }
